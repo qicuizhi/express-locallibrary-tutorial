@@ -19,18 +19,18 @@ const app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = 'mongodb+srv://q:1@cluster0.m3lstsu.mongodb.net/locallibrary';
+const mongoDB = process.env.MONGODB_URI ||'mongodb+srv://q:1@cluster0.m3lstsu.mongodb.net/locallibrary';
 
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
 }
 
-if(process.env.NODE_ENV === 'production') {
-  console.log('We are running in production mode')
-} else {
-  console.log('We are running in development mode')
-}
+// if(process.env.NODE_ENV === 'production') {
+//   console.log('We are running in production mode')
+// } else {
+//   console.log('We are running in development mode')
+// }
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
