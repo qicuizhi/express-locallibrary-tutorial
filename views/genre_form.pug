@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}
+  //- action是空字符串，因此会将数据发送到与页面相同的 URL。
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Genre:
+      input#name.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='name' value=(undefined===genre ? '' : genre.name))
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+   ul
+    for error in errors
+     //- ??好像加不加!没区别，为甚要加？
+     li!= error.msg
